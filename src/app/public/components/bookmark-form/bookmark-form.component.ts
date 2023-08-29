@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { validUrlFormat } from './validator';
 
 @Component({
   selector: 'app-bookmark-form',
@@ -8,8 +9,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class BookmarkFormComponent {
   bookmarkForm = new FormGroup({
-    title: new FormControl(),
-    url: new FormControl(),
-    category: new FormControl(),
+    title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    url: new FormControl('', [Validators.required, validUrlFormat()]),
+    category: new FormControl(''),
   });
+
+  onSubmit() {
+    console.log(this.bookmarkForm.value);
+  }
 }
