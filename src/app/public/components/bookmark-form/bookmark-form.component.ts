@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validUrlFormat } from './validator';
+import { BookmarkService } from '../../services/bookmark.service';
 
 @Component({
   selector: 'app-bookmark-form',
@@ -8,6 +9,9 @@ import { validUrlFormat } from './validator';
   styleUrls: ['./bookmark-form.component.css'],
 })
 export class BookmarkFormComponent {
+  showNewCategory: boolean = false;
+  @Output() closeModalEvent: EventEmitter<void> = new EventEmitter<void>();
+
   bookmarkForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     url: new FormControl('', [Validators.required, validUrlFormat()]),
@@ -15,23 +19,21 @@ export class BookmarkFormComponent {
     newCategory: new FormControl(''), // Add newCategory FormControl
   });
 
-  showNewCategory: boolean = false; // Add showNewCategory flag
+  constructor(private bookmarkService: BookmarkService) {}
 
   onSubmit() {
+    this.bookmarkService.submitBookmarkForm(
+      this.bookmarkForm,
+      this.showNewCategory
+    );
     console.log(this.bookmarkForm.value);
+    this.bookmarkForm.reset();
+
+    this.closeModalEvent.emit();
   }
 
   toggleCategoryControls() {
     this.showNewCategory = !this.showNewCategory;
-    if (this.showNewCategory) {
-      this.bookmarkForm?.get('category')?.disable();
-      this.bookmarkForm
-        ?.get('newCategory')
-        ?.setValidators([Validators.required]);
-    } else {
-      this.bookmarkForm?.get('category')?.enable();
-      this.bookmarkForm?.get('newCategory')?.clearValidators();
-    }
-    this.bookmarkForm?.get('newCategory')?.updateValueAndValidity();
+    this.bookmarkService.toggleCategoryControls(this.bookmarkForm);
   }
 }

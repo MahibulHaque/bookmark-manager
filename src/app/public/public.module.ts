@@ -7,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { BookmarkFormComponent } from './components/bookmark-form/bookmark-form.component';
 import { PopupModalComponent } from './components/popup-modal/popup-modal.component';
 import { BookmarkModalComponent } from './components/bookmark-modal/bookmark-modal.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
-  declarations: [PublicComponent, BookmarkFormComponent, PopupModalComponent, BookmarkModalComponent],
+  declarations: [PublicComponent, BookmarkFormComponent, PopupModalComponent, BookmarkModalComponent, CardComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,

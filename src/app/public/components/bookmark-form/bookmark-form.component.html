@@ -29,7 +29,7 @@
       <div *ngIf="bookmarkForm.get('title')?.errors?.['required']">
         Title is required.
       </div>
-      <div *ngIf="bookmarkForm.get('title')?.errors?.['minlength']">
+      <div *ngIf="bookmarkForm.get('title')?.errors?.['maxlength']">
         Title can be maximum 30 characters long.
       </div>
     </div>
