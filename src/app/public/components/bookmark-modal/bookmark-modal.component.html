@@ -1,0 +1,7 @@
+<button class="px-4 py-2 text-white bg-blue-500 rounded" (click)="openModal()">
+  Add Bookmark
+</button>
+<app-popup-modal
+  *ngIf="showModal"
+  (closeModalEvent)="closeModal()"
+></app-popup-modal>
