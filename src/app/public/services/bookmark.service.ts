@@ -11,8 +11,10 @@ export class BookmarkService {
   constructor(private localStorageService: LocalStorageService) {}
   submitBookmarkForm(form: FormGroup, showNewCategory: boolean) {
     const formData = form.value;
-    const existingBookmarks = this?.localStorageService?.getItem('bookmarks') || [];
-    const existingCategories = this?.localStorageService?.getItem('categories') || [];
+    const existingBookmarks =
+      this?.localStorageService?.getItem('bookmarks') || [];
+    const existingCategories =
+      this?.localStorageService?.getItem('categories') || [];
     const newCategory = formData?.newCategory?.trim();
 
     if (newCategory && !existingCategories.includes(newCategory)) {
@@ -28,7 +30,7 @@ export class BookmarkService {
 
   toggleCategoryControls(form: FormGroup) {
     this.showNewCategory = !this.showNewCategory;
-    
+
     if (this.showNewCategory) {
       form.get('category')?.disable();
       form.get('newCategory')?.setValidators([Validators.required]);
@@ -37,5 +39,23 @@ export class BookmarkService {
       form.get('newCategory')?.clearValidators();
     }
     form.get('newCategory')?.updateValueAndValidity();
+  }
+
+  getAllCategories(): string[] {
+    return this.localStorageService.getItem('categories') || [];
+  }
+
+  getAllBookmarksGroupedByCategory(): { [category: string]: any[] } {
+    const allBookmarks = this.localStorageService.getItem('bookmarks') || [];
+    const groupedBookmarks: { [category: string]: any[] } = {};
+
+    allBookmarks.forEach((bookmark: any) => {
+      if (!groupedBookmarks[bookmark.category]) {
+        groupedBookmarks[bookmark.category] = [];
+      }
+      groupedBookmarks[bookmark.category].push(bookmark);
+    });
+
+    return groupedBookmarks;
   }
 }

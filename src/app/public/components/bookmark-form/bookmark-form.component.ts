@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { validUrlFormat } from './validator';
 import { BookmarkService } from '../../services/bookmark.service';
@@ -8,8 +8,9 @@ import { BookmarkService } from '../../services/bookmark.service';
   templateUrl: './bookmark-form.component.html',
   styleUrls: ['./bookmark-form.component.css'],
 })
-export class BookmarkFormComponent {
+export class BookmarkFormComponent implements OnInit {
   showNewCategory: boolean = false;
+  existingCategories: string[] = [];
   @Output() closeModalEvent: EventEmitter<void> = new EventEmitter<void>();
 
   bookmarkForm = new FormGroup({
@@ -20,6 +21,10 @@ export class BookmarkFormComponent {
   });
 
   constructor(private bookmarkService: BookmarkService) {}
+
+  ngOnInit(): void {
+    this.existingCategories = this.bookmarkService.getAllCategories();
+  }
 
   onSubmit() {
     this.bookmarkService.submitBookmarkForm(
@@ -36,4 +41,5 @@ export class BookmarkFormComponent {
     this.showNewCategory = !this.showNewCategory;
     this.bookmarkService.toggleCategoryControls(this.bookmarkForm);
   }
+
 }

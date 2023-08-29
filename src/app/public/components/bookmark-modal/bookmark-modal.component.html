@@ -1,5 +1,6 @@
-<button class="px-4 py-2 text-white bg-blue-500 rounded" (click)="openModal()">
+<button class="flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded" (click)="openModal()">
   Add Bookmark
+  <ng-icon name="heroBookmark"></ng-icon>
 </button>
 <app-popup-modal *ngIf="showModal" (closeModalEvent)="closeModal()"
   ><app-bookmark-form (closeModalEvent)="closeModal()"></app-bookmark-form

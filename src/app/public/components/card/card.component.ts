@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Bookmark } from '../../types/bookmark';
 
 @Component({
   selector: 'app-card',
@@ -7,5 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class CardComponent {
   @Input() category: string = '';
-  @Input() bookmarks: Object[] = [];
+  @Input() bookmarks: Bookmark[] = [];
 }
