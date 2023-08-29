@@ -1,1 +1,23 @@
-<h1>public works!</h1>
+<div class="flex flex-wrap items-center justify-between min-h-[80vh] mx-20">
+  <div class="flex flex-col items-center md:items-start justify-center max-w-[480px] gap-6">
+    <h1 class="text-3xl lg:text-4xl font-bold text-accent">
+      No worries about messy bookmarks
+    </h1>
+    <p>
+      We know you found many sources from the Internet & place it on that bunch
+      bookmarks folder on browser, We made forms which help you manage your
+      bookmarks.
+    </p>
+    <button
+      class="bg-primary text-[16px] text-accent-foreground px-4 py-2 rounded-full"
+      routerLink="/home"
+    >
+      GET STARTED
+    </button>
+  </div>
+
+  <div class="max-w-[640px] min-w-[350px]">
+    <img src="../../assets/landing-page.svg" alt="landing-page-image" />
+  </div>
+</div>
+<router-outlet></router-outlet>

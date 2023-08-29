@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public/public.component';
 
 const routes: Routes = [
-  { path: '', component: PublicComponent },
+  {
+    path: '',
+    loadChildren: () => import('./public/public.module').then(m => m.PublicModule)
+  }
 ];
 
 @NgModule({
