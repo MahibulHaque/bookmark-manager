@@ -1,0 +1,16 @@
+<div
+  *ngIf="selectedBookmark"
+  class="mt-6 flex flex-col items-center gap-10 text-lg bookmark-details max-w-[640px] min-w-[350px] rounded-md bg-gray-700 text-white flex-wrap p-10"
+>
+  <p><strong>Title:</strong> {{ selectedBookmark.title }}</p>
+  <p>
+    <strong>URL:</strong>
+    <a
+      [href]="sanitizeUrl(selectedBookmark.url)"
+      target="_blank"
+      class="truncate"
+      >{{ selectedBookmark.url }}</a
+    >
+  </p>
+  <p><strong>Category:</strong> {{ selectedBookmark.category }}</p>
+</div>

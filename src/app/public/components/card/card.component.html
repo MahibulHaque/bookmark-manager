@@ -1,26 +1,26 @@
 <div
-  class="w-full max-w-sm overflow-y-scroll bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  class="w-full overflow-y-scroll bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 scrollbar-hide min-w-[350px]"
 >
-  <div class="px-5 pb-5">
+  <div class="mx-10 my-10">
     <h5
       class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"
     >
       {{ category }}
     </h5>
 
-    <ul class="flex flex-col items-center justify-between">
-      <li *ngFor="let bookmark of bookmarks">
+    <ul class="flex flex-col items-center justify-center mt-4">
+      <li *ngFor="let bookmark of bookmarks" class="min-w-[100%] flex items-center justify-between gap-4">
         <span class="text-3xl font-bold text-gray-900 dark:text-white">
-          <a href="{{ bookmark.url }}" target="_blank">{{
-            bookmark.title
-          }}</a></span
-        >
+          <a [href]="sanitizeUrl(bookmark.url)" target="_blank">{{ bookmark.title }}</a>
+        </span>
         <button
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          (click)="showDetails(bookmark)"
         >
           Details
         </button>
       </li>
     </ul>
   </div>
+  
 </div>

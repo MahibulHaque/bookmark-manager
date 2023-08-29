@@ -12,9 +12,10 @@ import { PopupModalComponent } from './components/popup-modal/popup-modal.compon
 import { BookmarkModalComponent } from './components/bookmark-modal/bookmark-modal.component';
 import { CardComponent } from './components/card/card.component';
 import { HomeComponent } from './components/home/home.component';
+import { BookmarkDetailsComponent } from './components/bookmark-details/bookmark-details.component';
 
 @NgModule({
-  declarations: [PublicComponent, BookmarkFormComponent, PopupModalComponent, BookmarkModalComponent, CardComponent, HomeComponent],
+  declarations: [PublicComponent, BookmarkFormComponent, PopupModalComponent, BookmarkModalComponent, CardComponent, HomeComponent, BookmarkDetailsComponent],
   imports: [
     CommonModule,
     PublicRoutingModule,
