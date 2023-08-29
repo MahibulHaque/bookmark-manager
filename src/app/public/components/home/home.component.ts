@@ -7,13 +7,15 @@ import { BookmarkService } from '../../services/bookmark.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  groupedBookmarks = [];
-  existingCategory: string[] = [];
-  constructor(private bookmarkService: BookmarkService) {}
+  groupedBookmarks: { [category: string]: any[] } = {}; // Initialize as an object
 
+  constructor(private bookmarkService: BookmarkService) {}
+  
   ngOnInit(): void {
-    this.existingCategory = this.bookmarkService.getAllCategories();
     this.groupedBookmarks =
-      this.bookmarkService.getAllBookmarksGroupedByCategory(this.existingCategory);
+      (this.bookmarkService.getAllBookmarksGroupedByCategory() ?? {}) as {
+        [category: string]: any[];
+      };
+    console.log(this.groupedBookmarks);
   }
 }

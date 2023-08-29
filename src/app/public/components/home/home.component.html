@@ -5,7 +5,10 @@
   </div>
   <div class="flex flex-wrap items-center justify-between">
     <div class="flex flex-col items-start justify-center gap-6">
-        
+        <div *ngFor="let category of groupedBookmarks | keyvalue">
+            <app-card [category]="category.key" [bookmarks]="category.value"></app-card>
+          </div>
+            <!-- <app-card *ngFor="let category of Object.keys(groupedBookmarks)" [category]="category" [bookmarks]="groupedBookmarks[category]"></app-card> -->
     </div>
   </div>
 </div>
